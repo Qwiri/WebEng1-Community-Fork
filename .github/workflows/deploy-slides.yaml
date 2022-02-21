@@ -49,6 +49,7 @@ jobs:
           <div class="reveal">
         replace: |
           <!-- Qwiri Fork Inject start -->
+          <button onclick="window.location = '/'">Home</button>
           <button onclick="toggleTheme()">Change Theme</button>
           <div class="reveal">
           <!-- Qwiri Fork Inject end -->
