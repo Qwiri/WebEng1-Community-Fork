@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,9 +8,10 @@
     <link rel="stylesheet" href=".landing/style.css">
     <title>WebEng1</title>
 </head>
+
 <body>
     <aside>
-       <img src="./.landing/heading.svg"  alt="heading">
+        <img src="./.landing/heading.svg" alt="heading">
         <div id="timelineWrapper">
             <img id="timeline" src=".landing/timeline.svg" alt="timeline">
             <div id="timelineGrid">
@@ -38,25 +40,50 @@
     </aside>
     <main>
         <div id="blackBox">
-            <p> Dieses Projekt enthält die Vorlesungsfolien für die Vorlesungen Web-Engineering 1 </p>
-
-            <p> an der Dualen Hochschule Baden-Württemberg Karlsruhe. </p>
-
-            <p>
-                Die Folien sind mit Reveal.js erstellt. Ein einfaches öffnen der jeweiligen "index.html" stellt die Folien im Browser dar.
+            <p>Diese Seite enthält die Vorlesungsfolien für Web-Engineering 1 an der
+                <a target="_blank" href="//karlsruhe.dhbw.de">DHBW Karlsruhe</a>.
             </p>
 
             <p>
-                Um auch die Code-Beispiel nutzen zu können, müssen die Folien zwingend von einem Webserver ausgeliefert werden. Dafür ist das npm Projekt vorgesehen:
+                Die Folien sind mit
+                <a target="_blank" href="https://revealjs.com">Reveal.js</a>
+                erstellt. Links findest du eine Uebersicht der Themen.
+                Klickst du auf ein Thema, kommst du zu den Slides des Themas 👍
+            </p>
+
+            <p>
+                Um auch Code-Beispiele nutzen zu können, müssen die Folien allerdings lokal von einem Webserver
+                ausgeliefert werden.
+
+                Klone dazu die <a href="https://github.com/Qwiri/WebEng1-Community-Fork">Git Repo</a>, installiere
+                NodeJS und starte den lokalen Web-Server mit folgenden Befehlen:
             </p>
 
             <pre class="code">
     $ npm ci
     $ npm start</pre>
             <p>
-                Damit sind die Folien unter localhost:3000 aufrufbar. Wichtig ist der abschließende "/" am Ende der Url: http://localhost:3000/added_2021/html/.
+                Damit sind die Folien unter
+                <a target="_blank" href="http://localhost:3000">localhost:3000</a>
+                aufrufbar.
+
+            </p>
+
+            <p> 
+                <strong>Hinweis:</strong> Es handelt sich um einen Fork des originalen Repos, um die Slides automatisiert zu deployen, einen Theme Switcher zu haben, und um eine Landung Page zu providen.
+            </p>
+
+            <p>
+                <strong>Links zu den Repos:</strong> <br /> <br />
+                <a target="_blank" href="https://gitlab.com/chr1shaefn3r-dhbw/vorlesung-webeng1/-/tree/master/">
+                    <img src="./.landing/gitlab.svg" alt="gitlab" />
+                </a>
+                <a style="margin-left: 0.5rem" target="_blank" href="https://github.com/Qwiri/WebEng1-Community-Fork">
+                    <img src="./.landing/github.svg" alt="github" />
+                </a>
             </p>
         </div>
     </main>
 </body>
+
 </html>
