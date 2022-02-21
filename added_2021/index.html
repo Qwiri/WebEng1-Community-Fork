@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href=".landing/style.css">
+    <title>WebEng1</title>
+</head>
+<body>
+    <aside>
+       <img src="./.landing/heading.svg"  alt="heading">
+        <div id="timelineWrapper">
+            <img id="timeline" src=".landing/timeline.svg" alt="timeline">
+            <div id="timelineGrid">
+                <img class="circle" src=".landing/circle.svg" alt="circle" />
+                <a href="intro/" class="timelineChapter">
+                    <h3>Intro</h3>
+                    <p>09.01.2022</p>
+                </a>
+                <img class="circle" src=".landing/circle.svg" alt="circle" />
+                <a href="html/" class="timelineChapter">
+                    <h3>HTML</h3>
+                    <p>17.01.2022</p>
+                </a>
+                <img class="circle" src=".landing/circle.svg" alt="circle" />
+                <a href="css/" class="timelineChapter">
+                    <h3>CSS</h3>
+                    <p>24.01.2022</p>
+                </a>
+                <img class="circle" src=".landing/circle_red.svg" alt="circle" />
+                <a href="js/" class="timelineChapter">
+                    <h3>JavaScript</h3>
+                    <p>21.02.2022</p>
+                </a>
+            </div>
+        </div>
+    </aside>
+    <main>
+        <div id="blackBox">
+            <p> Dieses Projekt enthält die Vorlesungsfolien für die Vorlesungen Web-Engineering 1 </p>
+
+            <p> an der Dualen Hochschule Baden-Württemberg Karlsruhe. </p>
+
+            <p>
+                Die Folien sind mit Reveal.js erstellt. Ein einfaches öffnen der jeweiligen "index.html" stellt die Folien im Browser dar.
+            </p>
+
+            <p>
+                Um auch die Code-Beispiel nutzen zu können, müssen die Folien zwingend von einem Webserver ausgeliefert werden. Dafür ist das npm Projekt vorgesehen:
+            </p>
+
+            <pre class="code">
+    $ npm ci
+    $ npm start</pre>
+            <p>
+                Damit sind die Folien unter localhost:3000 aufrufbar. Wichtig ist der abschließende "/" am Ende der Url: http://localhost:3000/added_2021/html/.
+            </p>
+        </div>
+    </main>
+</body>
+</html>
