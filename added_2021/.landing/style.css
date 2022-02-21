@@ -2,13 +2,16 @@
 :root {
     --background-color: #121212;
     --text-color: white;
+    --text-red: #E20022;
 }
 body {
     padding: 0;
     margin: 0;
 
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 13vw;
+    flex-wrap: wrap;
 
     font-family: 'Roboto', sans-serif;
     background-color: var(--background-color);
@@ -84,4 +87,9 @@ aside {
     padding: .5rem;
     border-radius: 0 .2rem .2rem 0;
     padding-right: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-red);
 }
