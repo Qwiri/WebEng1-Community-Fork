@@ -187,13 +187,13 @@
 						<li class="fragment">das Web hat sich als Platform gegen bestehende native Platformen (Mobile,
 							PC) etabliert</li>
 					</ul>
+					<aside class="notes">
+						Pip: Python Package Manager
+						Npm: Node Package Manager
+						Crate: Rust Package Manager
+						Maven: Jar Dependencies
+					</aside>
 				</section>
-				<aside class="notes">
-					Pip: Python Package Manager
-					Npm: Node Package Manager
-					Crate: Rust Package Manager
-					Maven: Jar Dependencies
-				</aside>
 			</section>
 			<section>
 				<section>
@@ -276,13 +276,15 @@
 						<code class="hljs" data-code="./code-examples/2_variablen/datentypen.js" data-line-numbers="|1-2|4-5|7-8|10-11"></code>
 					</pre>
 					<p>Typ der Variable ergibt sich aus dem Ergebnis des Ausdrucks</p>
+					<p>Ohne Schlüsselwort: Kontext-Globale Variable</p>
 				</section>
 				<section>
 					<h3>Datentypen und Variablen</h3>
 					<pre class="language-js">
 						<code class="hljs" data-code="./code-examples/2_variablen/schluesselwort.js" data-line-numbers="|1|2|4-5|7-8"></code>
 					</pre>
-					<p>Ohne Schlüsselwort: Kontext-Globale Variable</p>
+					<p>Mit <span class="hljs-keyword">let</span>/<span class="hljs-keyword">const</span> Schlüsselwort: Block-Scope Variable</p>
+					<p>Mit <span class="hljs-keyword">var</span> Schlüsselwort: Function-Scope Variable</p>
 				</section>
 				<section>
 					<h3>Operatoren</h3>
@@ -299,6 +301,7 @@
 					<pre class="language-js fragment" data-fragment-index="5">
 <code class="hljs">console.log("47" + 11); // "4711"
 console.log("47" * 1 + 11); // 58</code></pre>
+					<p class="fragment" data-fragment-index="5">Die Typumwandlung kann sehr "unerwartete" Ausmaße annehmen: <a href="https://www.destroyallsoftware.com/talks/wat">WAT</a></p>
 					<aside class="notes">
 						% - Remainder
 						& - Bitwise AND
@@ -579,7 +582,7 @@ a = new Position(3,4); // Objekt mit x=3 und y=4
 					<p>Bezugspunkt fuer den Aufrufer/Kontext</p>
 					<p class="fragment">Bisher: die aktuelle Objekt-Instanz</p>
 					<pre class="language-js fragment">
-<code class="hljs" data-line-numbers="1-3|5-7|9|">function whatTheThis() {
+<code class="hljs" data-line-numbers="1-3|5-7|9-10|">function whatTheThis() {
 	return this.a;
 }
 
@@ -588,6 +591,7 @@ console.log(a); // 16
 console.log(window.a); //16
 
 console.log(whatTheThis()); // 16
+console.log(window.whatTheThis()); // 16
 </code></pre>
 				</section>
 				<section>
