@@ -20,27 +20,27 @@ jobs:
         find: |
           <link rel="stylesheet" href="dist/theme/white.css">
         replace: |
-          <link rel="stylesheet" id="night" href="dist/theme/night.css">
-          <link rel="stylesheet alternate" id="white" href="dist/theme/white.css">
+          <!-- Qwiri Fork Inject Start -->
+          <link rel="stylesheet alternate" id="night" href="dist/theme/night.css">
+          <link rel="stylesheet" id="white" href="dist/theme/white.css">
           <link rel="stylesheet alternate" id="moon" href="dist/theme/moon.css">
 
           <script defer>
-              let themes = [ 'night', 'white', 'moon' ];
+              let themes = [ 'white', 'night', 'moon' ];
               let current = 0;
 
               function toggleTheme() {
                 current = (current + 1) % themes.length;
                 for (const i in themes) {
                   if (current == i) {
-                    console.log("enabling", themes[i])
                     document.getElementById(themes[i]).setAttribute("rel", "stylesheet");
                   } else {
-                    console.log("disabling", themes[i])
                     document.getElementById(themes[i]).setAttribute("rel", "stylesheet alternate");
                   }
                 }
               }
           </script>
+          <!-- Qwiri Fork Inject end -->
     
     - name: Add Change Theme Button
       uses: jacobtomlinson/gha-find-replace@v2
@@ -48,8 +48,10 @@ jobs:
         find: |
           <div class="reveal">
         replace: |
+          <!-- Qwiri Fork Inject start -->
           <button onclick="toggleTheme()">Change Theme</button>
           <div class="reveal">
+          <!-- Qwiri Fork Inject end -->
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
