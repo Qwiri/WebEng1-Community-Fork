@@ -1,0 +1,1867 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<title>WebEng1: CSS</title>
+
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/white.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+	<style>
+		header {
+			position: absolute;
+			top: 12px;
+			right: 12px;
+		}
+
+		iframe.code-example {
+			border: 2px solid grey;
+		}
+
+		iframe.full-width {
+			width: 100%;
+		}
+
+		iframe.mindmap {
+			width: 100%;
+			height: 50vh;
+		}
+
+		.two-columns {
+			display: grid;
+			grid: auto-flow / 2fr 1fr;
+			grid-auto-flow: column
+		}
+
+		.two-columns-half-half {
+			display: grid;
+			grid: auto-flow / 1fr 1fr;
+			grid-auto-flow: column
+		}
+
+		.text-column {
+			margin: 5px;
+		}
+
+		.li-space-above {
+			margin-top: 55px;
+		}
+
+		.hljs-value {
+			/* color: #4f424c; Paraiso Light */
+			color: #84613d;
+			/* Kimbie Light */
+		}
+
+		.smaller-font {
+			font-size: smaller;
+		}
+
+		.min-height-200 {
+			min-height: 200px;
+		}
+
+		.min-height-300 {
+			min-height: 300px;
+		}
+	</style>
+</head>
+
+
+<!--
+	PDF-Export (/?print-pdf)
+	Tag 1: 1,3-38
+	Tag 1 - Praxis: 39-47
+	Tag 1 - Praxis-Loesungen: 48-52
+	Tag 2: 1,53-90
+	Tag 2 - Praxis: 91-98
+	Tag 2 - Praxis-Loesungen: 99-101
+-->
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h1>CSS</h1>
+
+				<p>
+					Cascading Style Sheets
+				</p>
+			</section>
+			<section>
+				<h3>CSS - Mindmap</h3>
+				<iframe class="mindmap" data-src="./mindmap.html"></iframe>
+			</section>
+			<section>
+				<h3>CSS - Cascading Style Sheets</h3>
+				<ul>
+					<li>Deklarative Sprache für Stilvorlagen
+						<ul>
+							<li>Aktuelle Version CSS3</li>
+							<li>Spezifikation: <a href="https://www.w3.org/Style/CSS/">www.w3.org/Style/CSS/</a></li>
+						</ul>
+					</li>
+					<li class="li-space-above">Trennung von Struktur und Darstellung
+						<ul>
+							<li>Struktur: HTML</li>
+							<li>Stil/Layout: CSS</li>
+							<li>Unterschiedliche Darstellung für unterschiedliche Ausgabemedien (z.B. Light vs.
+								Dark-Mode)</li>
+						</ul>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<section>
+					<h3>HTML ohne CSS</h3>
+					<iframe class="code-example full-width"
+						data-src="./code-examples/1_html-css/ohne-css.html"></iframe>
+					<pre class="language-html">
+						<code class="hljs" data-code="./code-examples/1_html-css/ohne-css.html"></code>
+					</pre>
+				</section>
+				<section>
+					<h3>HTML mit CSS</h3>
+					<iframe class="code-example full-width" data-src="./code-examples/1_html-css/mit-css.html"></iframe>
+					<pre class="language-html">
+						<code class="hljs" data-code="./code-examples/1_html-css/mit-css.html" data-line-numbers="7-19"></code>
+					</pre>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>CSS - Stylesheets</h3>
+					<p>Sind CSS-Dokumente/Menge von CSS-Regeln</p>
+					<p class="fragment" data-fragment-index="1">Browser kennen drei Arten von Stylesheets:
+					<ul>
+						<li class="fragment" data-fragment-index="1">Browser: Grundeinstellung des Browsers<br />
+							Wird durch den Browserhersteller bestimmt</li>
+						<li class="fragment" data-fragment-index="2">Homepage: eingebunden von der Website<br />
+							Wird durch den Website-Autor bestimmt</li>
+						<li class="fragment" data-fragment-index="3">Benutzer: Nutzer-Einstellung im Browsers<br />
+							Wird durch den Nutzer bestimmt</li>
+					</ul>
+					</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>CSS - Syntax</h3>
+					<ul>
+						<li>CSS-Regel: <span class="hljs-selector-tag">Selektor</span> { <span
+								class="hljs-attribute">Eigenschaft</span>: <span class="hljs-value">Wert</span>;}</li>
+						<li class="fragment li-space-above"><span class="hljs-selector-tag">Selektor</span>
+							(Selector)<br />
+							Wer soll verändert werden?</li>
+						<li class="fragment li-space-above"><span class="hljs-attribute">Eigenschaft</span>
+							(Property)<br />
+							Was soll verändert werden?</li>
+						<li class="fragment li-space-above"><span class="hljs-value">Wert</span> (Value)<br />
+							Wie soll es sein?</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Syntax</h3>
+					<ul>
+						<li class="fragment">Mehrere Eigenschaften setzen:<br />
+							<span class="hljs-selector-tag">X</span> { <span class="hljs-attribute">a</span>: <span
+								class="hljs-value">m</span>;}<br />
+							<span class="hljs-selector-tag">X</span> { <span class="hljs-attribute">b</span>: <span
+								class="hljs-value">n</span>;}<br />
+							ist semantisch äquivalent zu<br />
+							<span class="hljs-selector-tag">X</span> { <span class="hljs-attribute">a</span>: <span
+								class="hljs-value">m</span>; <span class="hljs-attribute">b</span>: <span
+								class="hljs-value">n</span>;}
+						</li>
+						<li class="fragment">Eigenschaften für mehrere Selektoren setzen:<br />
+							<span class="hljs-selector-tag">X</span> { <span class="hljs-attribute">a</span>: <span
+								class="hljs-value">m</span>;}<br />
+							<span class="hljs-selector-tag">Y</span> { <span class="hljs-attribute">a</span>: <span
+								class="hljs-value">m</span>;}<br />
+							ist semantisch äquivalent zu<br />
+							<span class="hljs-selector-tag">X, Y</span> { <span class="hljs-attribute">a</span>: <span
+								class="hljs-value">m</span>;}
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>CSS - Vererbung</h3>
+					<ul>
+						<li>Fast alle CSS-Eigenschaften werden an die Kind-Knoten vererbt!
+							<ul>
+								<li class="fragment">Gibt es zu einer Eigenschaft eines Elementes keinen Wert, wird der
+									Wert des
+									Elternknotens zu dieser Eigenschaft übernommen.</li>
+								<li class="fragment">Ausnahme: Positionierung</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Vererbung</h3>
+					<iframe class="code-example full-width"
+						data-src="./code-examples/2_vererbung/kindknoten.html"></iframe>
+					<pre class="language-html">
+						<code class="hljs" data-code="./code-examples/2_vererbung/kindknoten.html" data-line-numbers="8-10,15|15"></code>
+					</pre>
+					<aside class="notes">
+						Auch "World" wird rot (und zusätzlich fett) geschrieben!
+					</aside>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>CSS - Einbinden in HTML</h3>
+					<ul>
+						<li class="fragment">Methode 1: Style-Attribut<br />
+							&lt;p style="<span class="hljs-attribute">font-size</span>: <span
+								class="hljs-value">large</span>; <span class="hljs-attribute">color</span>: <span
+								class="hljs-value">olive</span>;"&gt;
+							<ul>
+								<li>Selektor entfällt</li>
+							</ul>
+						</li>
+						<li>Methode 2: Style-Tag (head!)<br />
+							&lt;style&gt;
+							<span class="hljs-selector-tag">p</span> { <span class="hljs-attribute">font-size</span>:
+							<span class="hljs-value">large</span>; <span class="hljs-attribute">color</span>: <span
+								class="hljs-value">olive</span>; }
+							&lt;/style&gt;
+							<ul>
+								<li>Zentrale Stelle für Style-Angaben im Dokument</li>
+							</ul>
+						</li>
+						<li class="fragment">Methode 3: CSS-Datei (head!)<br />
+							&lt;link rel="stylesheet" type="text/css" href="CSSThemeLight.css"&gt;
+							<ul>
+								<li>Seitenübergreifend möglich</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Einbinden alternativer Stile</h3>
+					<ul>
+						<li>Vergabe eines Titels für ein Style Sheet<br />
+							&lt;link rel="stylesheet" type="text/css" href="CSSThemeLight.css"
+							<b>title="Standard"</b>&gt;
+						</li>
+						<li class="fragment li-space-above" data-fragment-index="1">Angabe von Alternativen<br />
+							&lt;link rel="stylesheet" type="text/css" href="CSSThemeDark.css"
+							<b>title="DarkMode"</b>&gt;
+						</li>
+					</ul>
+					<p class="fragment" data-fragment-index="1"><a target="_blank"
+							href="./code-examples/3_alternative-Stile/">./code-examples/3_alternative-Stile/</a><br />
+						<a target="_blank" href="https://mkbhd.com/">mkbhd.com</a>
+					</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>CSS - Einfache Selektoren</h3>
+					<ul>
+						<li>Universalselektor *<ul>
+								<li>Selektiert alle Elemente!</li>
+							</ul>
+						</li>
+						<li class="fragment" data-fragment-index="1">Typselektor X<ul>
+								<li>Selektiert alle Elemente mit Typ X<br />z.B.: "<span
+										class="hljs-selector-tag">a</span>"</li>
+							</ul>
+						</li>
+						<li class="fragment" data-fragment-index="2">Klassenselektor <span
+								class="fragment highlight-current-red" data-fragment-index="3">.</span>Y<ul>
+								<li>Selektiert alle Elemente mit der Klasse Y<br />z.B.: "<span
+										class="hljs-selector-class"><span class="fragment highlight-current-red"
+											data-fragment-index="3">.</span>klassenname</span>"</li>
+							</ul>
+						</li>
+						<li class="fragment" data-fragment-index="4">ID-Selektor #Z<ul>
+								<li>Selektiert genau das Element mit der ID Z<br />z.B.: "<span
+										class="hljs-selector-id">#idname</span>"</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Einfache Selektoren</h3>
+					<div class="two-columns-half-half">
+						<div>
+							<pre class="language-html">
+								<code class="hljs" data-code="./code-examples/4_einfache-selektoren/einfache-selektoren_simple.html"></code>
+							</pre>
+						</div>
+						<div>
+							<pre class="language-css">
+								<code class="hljs" data-code="./code-examples/4_einfache-selektoren/einfache-selektoren.css" data-line-numbers="|1-5|7-9|11-15"></code>
+							</pre>
+						</div>
+					</div>
+				</section>
+				<section>
+					<h3>CSS - Einfache Selektoren</h3>
+					<iframe class="code-example full-width"
+						data-src="./code-examples/4_einfache-selektoren/einfache-selektoren_extended.html"></iframe>
+				</section>
+				<section>
+					<h3>CSS - Attribut Selektoren</h3>
+					<ol>
+						<li>[att]<ul>
+								<li>Selektiert die Elemente mit Attribut "att" gesetzt</li>
+								<li>Beispiel: *[onclick] &lt;button onclick="..."&gt;</li>
+							</ul>
+						</li>
+						<li class="fragment" data-fragment-index="1">[att=wert]<ul>
+								<li class="fragment" data-fragment-index="1">Selektiert die Elemente mit Attribut "att"
+									exakt auf Wert "wert" gesetzt</li>
+								<li class="fragment" data-fragment-index="2">Wert darf ohne, mit einfachen oder
+									doppelten Hochkommata stehen</li>
+								<li class="fragment" data-fragment-index="2">Beispiel: p[lang=de] &lt;p
+									lang="de"&gt;...&lt;/p&gt;<br />
+									p[lang='de'] &lt;p lang="de"&gt;...&lt;/p&gt;<br />
+									p[lang="de"] &lt;p lang="de"&gt;...&lt;/p&gt;</li>
+							</ul>
+						</li>
+					</ol>
+				</section>
+				<section>
+					<h3>CSS - Attribut Selektoren</h3>
+					<ol start="3">
+						<li>[att~=wert]<ul>
+								<li>Selektiert die Elemente mit Attribut <span class="fragment highlight-current-red"
+										data-fragment-index="1">"att"</span> die Wert <span
+										class="fragment highlight-current-red" data-fragment-index="2">"wert"</span>
+									enthalten</li>
+								<li>Beispiel: p[<span class="fragment highlight-current-red"
+										data-fragment-index="1">class</span>~=<span
+										class="fragment highlight-current-red" data-fragment-index="2">xy</span>] &lt;p
+									class="ab xy cd"&gt;...&lt;/p&gt;</li>
+								<li class="fragment" data-fragment-index="3">ABER: p[class~=x] selektiert nicht!</li>
+							</ul>
+						</li>
+						<li class="fragment" data-fragment-index="4">[att|=wert]<ul>
+								<li>Selektiert die Elemente mit Attribut <span class="fragment highlight-current-red"
+										data-fragment-index="5">"att"</span> exakt auf Wert <span
+										class="fragment highlight-current-red" data-fragment-index="6">"wert"</span>
+									gesetzt oder mit
+									Wert "wert" und Zeichen "-" beginnen</li>
+								<li>Beispiel: p[<span class="fragment highlight-current-red"
+										data-fragment-index="5">lang</span>|=<span
+										class="fragment highlight-current-red" data-fragment-index="6">en</span>] &lt;p
+									lang="en-us"&gt;...&lt;/p&gt;</li>
+							</ul>
+						</li>
+					</ol>
+				</section>
+				<section>
+					<h3>CSS - Attribut Selektoren</h3>
+					<ol start="5">
+						<li class="fragment">[att^=wert]<ul>
+								<li>Elemente deren "att" mit "wert" beginnen</li>
+								<li>Beispiel: p[id^=ab] &lt;p id="abcde"&gt;...&lt;/p&gt;</li>
+							</ul>
+						</li>
+						<li class="fragment">[att$=wert]<ul>
+								<li>Elemente deren "att" mit "wert" endet</li>
+								<li>Beispiel: p[id$=de] &lt;p id="abcde"&gt;...&lt;/p&gt;</li>
+							</ul>
+						</li>
+						<li class="fragment">[att*=wert]<ul>
+								<li>Elemente deren "att" mit "wert" enthält</li>
+								<li>Beispiel: p[id*="b cd"] &lt;p id="ab cde"&gt;...&lt;/p&gt;</li>
+							</ul>
+						</li>
+					</ol>
+				</section>
+				<section>
+					<h3>CSS - Kombinierte Attribut Selektoren</h3>
+					<ol start="8">
+						<li>[Selektor1][Selektor2]<ul>
+								<li class="fragment">Selektiert die Elemente, die sowohl von Selektor1 und Selektor2
+									gewählt werden</li>
+								<li class="fragment">Beispiel:<br />
+									input[lang=de][name*=xy]<br />
+									&lt;input lang="de" name="xyz" /&gt;
+								</li>
+							</ul>
+						</li>
+					</ol>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>CSS - Kombinatoren für Selektoren</h3>
+					<ul>
+						<li class="fragment">Nachfahren: E F<ul>
+								<li>alle F, die Nachfahren eines Elements E sind</li>
+							</ul>
+						</li>
+						<li class="fragment">Kinder: E &gt; F<ul>
+								<li>alle F, die Kinder eines Elementes E sind</li>
+							</ul>
+						</li>
+						<li class="fragment">Geschwister: E ~ F<ul>
+								<li>alle F, die nachfolgende Geschwister von E sind</li>
+							</ul>
+						</li>
+						<li class="fragment">Nachbarn: E + F<ul>
+								<li>alle F, die direkt nachfolgende Geschwister<br />von E sind</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Beispiel Nachfahren</h3>
+					<div class="two-columns-half-half">
+						<pre>
+&lt;body&gt;
+  &lt;p&gt;
+    <span class="hljs-selector-tag">&lt;em&gt;D&lt;/em&gt;</span>
+    E
+    &lt;ins&gt;<span class="hljs-selector-tag">&lt;em&gt;F&lt;/em&gt;</span>&lt;/ins&gt;G
+  &lt;/p&gt;
+  &lt;h1&gt;A&lt;em&gt;B&lt;/em&gt;C&lt;/h1&gt;
+  &lt;p&gt;H&lt;/p&gt;
+  &lt;span&gt;I&lt;/span&gt;
+  &lt;p&gt;J&lt;/p&gt;
+&lt;/body&gt;</pre>
+						<ul>
+							<li>Nachfahren: p <span class="hljs-selector-tag">em</span></li>
+						</ul>
+					</div>
+				</section>
+				<section>
+					<h3>CSS - Beispiel Kind</h3>
+					<div class="two-columns-half-half">
+						<pre>
+&lt;body&gt;
+  &lt;p&gt;
+    <span class="hljs-selector-tag">&lt;em&gt;D&lt;/em&gt;</span>
+    E
+    &lt;ins&gt;&lt;em&gt;F&lt;/em&gt;&lt;/ins&gt;G
+  &lt;/p&gt;
+  &lt;h1&gt;A&lt;em&gt;B&lt;/em&gt;C&lt;/h1&gt;
+  &lt;p&gt;H&lt;/p&gt;
+  &lt;span&gt;I&lt;/span&gt;
+  &lt;p&gt;J&lt;/p&gt;
+&lt;/body&gt;</pre>
+						<ul>
+							<li>Kinder: p > <span class="hljs-selector-tag">em</span></li>
+						</ul>
+					</div>
+				</section>
+				<section>
+					<h3>CSS - Beispiel Geschwister</h3>
+					<div class="two-columns-half-half">
+						<pre>
+&lt;body&gt;
+  &lt;p&gt;
+    &lt;em&gt;D&lt;/em&gt;
+    E
+    &lt;ins&gt;&lt;em&gt;F&lt;/em&gt;&lt;/ins&gt;G
+  &lt;/p&gt;
+  &lt;h1&gt;A&lt;em&gt;B&lt;/em&gt;C&lt;/h1&gt;
+  <span class="hljs-selector-tag">&lt;p&gt;H&lt;/p&gt;</span>
+  &lt;span&gt;I&lt;/span&gt;
+  <span class="hljs-selector-tag">&lt;p&gt;J&lt;/p&gt;</span>
+&lt;/body&gt;</pre>
+						<ul>
+							<li>Geschwister: h1 ~ <span class="hljs-selector-tag">p</span></li>
+						</ul>
+					</div>
+				</section>
+				<section>
+					<h3>CSS - Beispiel Nachbarn</h3>
+					<div class="two-columns-half-half">
+						<pre>
+&lt;body&gt;
+  &lt;p&gt;
+    &lt;em&gt;D&lt;/em&gt;
+    E
+    &lt;ins&gt;&lt;em&gt;F&lt;/em&gt;&lt;/ins&gt;G
+  &lt;/p&gt;
+  &lt;h1&gt;A&lt;em&gt;B&lt;/em&gt;C&lt;/h1&gt;
+  <span class="hljs-selector-tag">&lt;p&gt;H&lt;/p&gt;</span>
+  &lt;span&gt;I&lt;/span&gt;
+  &lt;p&gt;J&lt;/p&gt;
+&lt;/body&gt;</pre>
+						<ul>
+							<li>Nachbarn: h1 + <span class="hljs-selector-tag">p</span></li>
+						</ul>
+					</div>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>CSS - Pseudoklassen</h3>
+					<ul>
+						<li>:link&emsp;- nicht besuchte Verweise</li>
+						<li>:visited&emsp;- besuchte Verweise</li>
+						<li>:active&emsp;- angeklicktes Element</li>
+						<li>:hover&emsp;- Element unter dem Mauszeiger</li>
+						<li>:focus&emsp;- Element mit dem Eingabefokus</li>
+						<li>:lang(x)&ensp;- Element mit Sprache x markiert</li>
+						<li>:target&emsp;- aktuelles Sprungziel (Anker)</li>
+						<li>:enabled&emsp;- freigegebenes Element</li>
+						<li>:disabled&emsp;- gesperrtes Element</li>
+						<li>:checked&emsp;- ausgewähltes Element</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Pseudoklassen Beispiele</h3>
+					<ul>
+						<li>Pseudoklassen werden an einen Selektor direkt angehängt (ohne Leerzeichen)</li>
+						<li class="fragment">Verweise, :link, :visited, :hover
+							<ul>
+								<li><span class="hljs-selector-tag">a</span><span
+										class="hljs-selector-pseudo">:link</span> { <span
+										class="hljs-attribute">color</span>: red; }</li>
+								<li><span class="hljs-selector-tag">a</span><span
+										class="hljs-selector-pseudo">:visited</span> { <span
+										class="hljs-attribute">color</span>: blue; }</li>
+								<li><span class="hljs-selector-tag">a</span><span
+										class="hljs-selector-pseudo">:hover</span> { <span
+										class="hljs-attribute">background-color</span>: silver; }</li>
+							</ul>
+						</li>
+						<li class="fragment">Input, :focus
+							<ul>
+								<li><span class="hljs-selector-tag">input</span><span
+										class="hljs-selector-pseudo">:focus</span> { <span
+										class="hljs-attribute">border-color</span>: red; }</li>
+							</ul>
+						</li>
+						<li class="fragment">Fehlt der Selektor, wird * angenommen!</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Strukturelle Pseudoklassen</h3>
+					<ul>
+						<li>:first-child&emsp;- erstes Kind Element</li>
+						<li>:last-child&emsp;- letztes Kind Element</li>
+						<li>:nth-child(n)&ensp;- n-tes Kind Element</li>
+						<li>:only-child&emsp;- einziges Kind Element</li>
+						<li class="fragment li-space-above" data-fragment-index="1">:first-of-type&emsp;- erstes Element
+							dieses Typs<br />:last-of-type, :nth-of-type, :nth-last-of-type, :only-of-type</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Strukturelle Pseudoklassen</h3>
+					<div class="two-columns-half-half">
+						<pre>
+&lt;body&gt;
+  <span class="hljs-selector-pseudo">&lt;h1&gt;Eine Überschrift&lt;/h1&gt;</span>
+  &lt;p&gt;Ein einfacher Absatz.&lt;/p&gt;
+  &lt;ul&gt;
+    <span class="hljs-selector-pseudo">&lt;li&gt;Erster Punkt&lt;/li&gt;</span>
+    &lt;li&gt;Zweiter Punkt&lt;/li&gt;
+    &lt;li&gt;Dritter Punkt&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/body&gt;</pre>
+						<ul>
+							<li><span class="hljs-selector-pseudo">:first-child</span></li>
+						</ul>
+					</div>
+				</section>
+				<section>
+					<h3>CSS - Strukturelle Pseudoklassen</h3>
+					<div class="two-columns-half-half">
+						<pre>
+&lt;body&gt;
+  &lt;h1&gt;Eine Überschrift&lt;/h1&gt;
+  &lt;p&gt;Ein einfacher Absatz.&lt;/p&gt;
+  &lt;ul&gt;
+    <span class="hljs-selector-pseudo">&lt;li&gt;Erster Punkt&lt;/li&gt;</span>
+    &lt;li&gt;Zweiter Punkt&lt;/li&gt;
+    &lt;li&gt;Dritter Punkt&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/body&gt;</pre>
+						<ul>
+							<li>ul <span class="hljs-selector-pseudo">:first-child</span><br />Achtung! Leerzeichen!
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section>
+					<h3>CSS - Strukturelle Pseudoklassen</h3>
+					<div class="two-columns-half-half">
+						<pre>
+&lt;body&gt;
+  &lt;h1&gt;Eine Überschrift&lt;/h1&gt;
+  &lt;p&gt;Ein einfacher Absatz.&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Erster Punkt&lt;/li&gt;
+    &lt;li&gt;Zweiter Punkt&lt;/li&gt;
+    &lt;li&gt;Dritter Punkt&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/body&gt;</pre>
+						<ul>
+							<li>ul<span class="hljs-selector-pseudo">:first-child</span><br />Ohne
+								Leerzeichen:<br />keine Selektion!</li>
+							<li class="fragment" data-fragment-index="1"><span class="fragment"
+									data-fragment-index="1">Warum?</span><span class="fragment" data-fragment-index="2">
+									Weil ul selbst kein first-child!</span></li>
+						</ul>
+					</div>
+				</section>
+				<section>
+					<h3>CSS - Strukturelle Pseudoklassen</h3>
+					<div class="two-columns-half-half">
+						<pre>
+&lt;body&gt;
+  &lt;h1&gt;Eine Überschrift&lt;/h1&gt;
+  &lt;p&gt;Ein einfacher Absatz.&lt;/p&gt;
+  &lt;ul&gt;
+    <span class="hljs-selector-pseudo">&lt;li&gt;Erster Punkt&lt;/li&gt;</span>
+    &lt;li&gt;Zweiter Punkt&lt;/li&gt;
+    &lt;li&gt;Dritter Punkt&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/body&gt;</pre>
+						<ul>
+							<li>li<span class="hljs-selector-pseudo">:first-of-type</span></li>
+						</ul>
+					</div>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>CSS - Werte</h3>
+					<ol>
+						<li>Fest vorgegebene Werte (Aufzählungstypen)</li>
+						<li class="fragment" data-fragment-index="1">Maßeinheiten
+							<ul>
+								<li class="fragment" data-fragment-index="1">px&ensp;Pixel</li>
+								<li class="fragment" data-fragment-index="2">pt&ensp;Punkt: 1pt = 1/72inch</li>
+								<li class="fragment" data-fragment-index="2">pc&ensp;Pica: 1pc = 12pt</li>
+								<li class="fragment" data-fragment-index="2">in, mm, cm&ensp;Inch, Millimeter,
+									Zentimeter</li>
+								<li class="fragment" data-fragment-index="3">em&ensp;Schriftgröße des (Eltern)Elements
+								</li>
+								<li class="fragment" data-fragment-index="3">rem&ensp;Schriftgröße des Root-Elements
+								</li>
+								<li class="fragment" data-fragment-index="3">ex&ensp;Höhe von 'x' im (Eltern)Element
+								</li>
+								<li class="fragment" data-fragment-index="4">%&ensp;Relativ zum (Eltern)Element</li>
+							</ul>
+						</li>
+					</ol>
+					<aside class="notes">
+						Beispiel für Aufzählungstypen: z.B. position: "absolute", oder float: "left"
+					</aside>
+				</section>
+				<section>
+					<h3>CSS - Werte 2</h3>
+					<ol start="3">
+						<li>Farben
+							<ul>
+								<li>Fest vorgegebene Werte (z.B. blue, red)</li>
+								<li>#RRGGBB Hexadezimal Rot, Grün und Blau<br />
+									Schwarz: #000000, Weiß: #FFFFFF
+								</li>
+							</ul>
+						</li>
+						<li class="fragment">Rechtecke
+							<ul>
+								<li>rect(top, right, bottom, left)<br />z.B. um mit <a
+										href="https://developer.mozilla.org/en-US/docs/Web/CSS/clip">clip</a> einen
+									sichtbaren Bereich anzugeben</li>
+							</ul>
+						</li>
+						<li class="fragment">Urls
+							<ul>
+								<li>url("url") z.B. um mit background-image ein Hintergrundbild zu verlinken</li>
+							</ul>
+						</li>
+					</ol>
+					<aside class="notes">
+						Farben: blue, red, green, lightblue, darkblue
+					</aside>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>CSS - Eigenschaften</h3>
+					<ul>
+						<li>Text
+							<ul>
+								<li>Farbe, Schriftarten, Ausrichtung, "Dekoration"</li>
+							</ul>
+						</li>
+						<li>Farbe und Hintergründe
+							<ul>
+								<li>Farbe, Bilder, Wiederholung, Positionierung</li>
+							</ul>
+						</li>
+						<li>Listen</li>
+						<li>Rahmen
+							<ul>
+								<li>Farbe, Breite, Stil</li>
+							</ul>
+						</li>
+						<li>Abstände
+							<ul>
+								<li>CSS-Box-Modell</li>
+							</ul>
+						</li>
+						<li>Positionierung
+							<ul>
+								<li>fließend, statisch</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Eigenschaften - Text</h3>
+					<ul>
+						<li>text-ident
+							<ul>
+								<li>Einzug für erste Ausgabe-Zeile</li>
+							</ul>
+						</li>
+						<li class="fragment">text-align
+							<ul>
+								<li>Ausrichtung (left, right, center, justify)</li>
+							</ul>
+						</li>
+						<li class="fragment">text-decoration
+							<ul>
+								<li>Dekoration (underline, overline, line-through)</li>
+							</ul>
+						</li>
+						<li class="fragment">letter-spacing
+							<ul>
+								<li>Abstand zwischen den Buchstaben</li>
+							</ul>
+						</li>
+						<li class="fragment">text-transform
+							<ul>
+								<li>Groß-/Kleinschreibung (capitalize, uppercase, lowercase)</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Eigenschaften - Schriftarten</h3>
+					<ul>
+						<li>font-family
+							<ul>
+								<li>konkrete Schriftart: Times New Roman</li>
+								<li>generische Schriftart: serif, sans-serif, monospace</li>
+								<li>Angabe ist eine priorisierte Liste!</li>
+							</ul>
+						</li>
+						<li class="fragment">font-style: Schriftstil (normal, italic, oblique)
+						</li>
+						<li class="fragment">font-variant: Schriftvariante (normal, small-caps)
+						</li>
+						<li class="fragment">font-weight: Schriftstärke (normal, bold, Zahl)
+						</li>
+						<li class="fragment">font-size: Schriftgröße (small, large, Maßeinheit)
+						</li>
+						<li class="fragment">direction: Schriftrichtung (ltr, rtl)
+						</li>
+					</ul>
+					<aside class="notes">
+						font-style: oblique -> Zeichen drehen
+					</aside>
+				</section>
+				<section>
+					<h3>CSS - Farbe und Hintergründe</h3>
+					<ul>
+						<li>color: Farbe des Vordergrundes
+						</li>
+						<li class="fragment">background-color: Farbe des Hintergrundes
+						</li>
+						<li class="fragment">background-image: Hintergrundbild
+						</li>
+						<li class="fragment">background-repeat: Wiederholung des Hintergrundbildes (repeat-x, repeat-y,
+							no-repeat)
+						</li>
+						<li class="fragment">background-attachment: Hintergrundfixierung (scroll, fixed)
+						</li>
+						<li class="fragment">background-position: Position des Hintergrundbildes
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Listen</h3>
+					<ul>
+						<li>list-style-type: Art der Aufzählungszeichen (decimal, lower-roman, circle, ...)
+						</li>
+						<li class="fragment">list-style-position: Art der Einrückung
+							<ul>
+								<li>inside: im Absatz
+								</li>
+								<li>outside: vor dem Absatz
+								</li>
+							</ul>
+						</li>
+						<li class="fragment">list-style-image: Angabe eines eigenen Aufzählungszeichen/icons
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>CSS - Aufgabe 1</h3>
+					<pre class="language-html">
+						<code class="hljs" data-code="./code-examples/5_aufgabe1/aufgabe1.html" data-line-numbers="1-14"></code>
+					</pre>
+				</section>
+				<section>
+					<h3>CSS - Aufgabe 1</h3>
+					<p>Die Elemente mit welchen Ids werden hier selektiert?</p>
+					<div class="two-columns-half-half">
+						<ul>
+							<li>h2</li>
+							<li>.b</li>
+							<li>#li2</li>
+							<li>p[lang=de]</li>
+							<li>p[lang="de"]</li>
+							<li>*[title="x"]</li>
+							<li>*[title="x abc"]</li>
+							<li>*[title~="x"]</li>
+							<li>*[title~="x abc"]</li>
+						</ul>
+						<ul>
+							<li>*[title|="abc"]</li>
+							<li>*[title|="x abc"]</li>
+							<li>*[title^="abc"]</li>
+							<li>*[title$="c z"]</li>
+							<li>*[title*="abc"]</li>
+							<li>*[title*= "x abc"]</li>
+						</ul>
+					</div>
+				</section>
+				<section>
+					<h3>CSS - Praxis Styles Einbinden</h3>
+					<pre class="language-html">
+						<code class="hljs" data-code="./code-examples/5_aufgabe1/styles-einbinden.html" data-line-numbers="1-5"></code>
+					</pre>
+					<ul>
+						<li>Färben Sie per Style-Attribut den Absatz 1 rot</li>
+						<li>Färben Sie per Style-Tag den Absatz 2 grün</li>
+						<li>Färben Sie per CSS-Datei den Absatz 3 blau</li>
+						<li>Bieten Sie eine Alternative CSS-Datei an, mit der Absatz 3 gelb gefärbt wird.</li>
+						<li>Farbwerte: red, green, blue, yellow</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Praxis - CSS - Aufgabe 2</h3>
+					<p>Die Elemente mit welchen Ids werden selektiert?</p>
+					<div class="two-columns">
+						<pre class="language-html">
+							<code class="hljs" data-code="./code-examples/8_aufgabe2/aufgabe2.html" data-line-numbers="1-14"></code>
+						</pre>
+						<ul>
+							<li>h2</li>
+							<li>p li</li>
+							<li>ol li</li>
+							<li>h2 ~ p</li>
+							<li>h2 > p</li>
+							<li>p + p</li>
+							<li>h1 ~ h2</li>
+							<li>ol *</li>
+							<li>ol > *</li>
+						</ul>
+					</div>
+				</section>
+				<section>
+					<h3>Praxis - CSS - Aufgabe 2</h3>
+					<p>Die Elemente mit welchen Ids werden selektiert?</p>
+					<div class="two-columns">
+						<pre class="language-html">
+							<code class="hljs" data-code="./code-examples/8_aufgabe2/aufgabe2.html" data-line-numbers="1-14"></code>
+						</pre>
+						<ul start="10">
+							<li>:first-child</li>
+							<li>:only-child</li>
+							<li>h2:first-of-type</li>
+							<li>.k</li>
+							<li>.p4</li>
+						</ul>
+					</div>
+				</section>
+				<section>
+					<h3>Praxis - CSS - Aufgabe 3</h3>
+					<p>Die Elemente mit welchen Ids werden selektiert?</p>
+					<pre class="language-html">
+							<code class="hljs" data-code="./code-examples/9_aufgabe3/aufgabe3.html" data-line-numbers="1-14"></code>
+						</pre>
+				</section>
+				<section>
+					<h3>Praxis - CSS - Aufgabe 3</h3>
+					<p>Die Elemente mit welchen Ids werden selektiert?</p>
+					<ul>
+						<li>p[lang~=de] p[lang=fr]</li>
+						<li>p[lang~=de] ~ p[lang=fr]</li>
+						<li>p[lang~=de] + p[lang=fr]</li>
+						<li>#ol1 *[title|=abc]</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Praxis - CSS - Aufgabe 4</h3>
+					<div class="two-columns-half-half">
+						<pre>
+&lt;<span class="hljs-name">body</span>&gt;
+  &lt;<span class="hljs-name">h1</span>&gt;Dies ist der Titel&lt;/<span class="hljs-name">h1</span>&gt;
+  &lt;p&gt;Iste quidem veteres
+  inter ponetur honeste, qui
+  vel mense brevi vel toto est
+  iunior anno. Utor permisso,
+  caudaeque pilos ut equinae
+  paulatim vello unum, demo
+  etiam unum, dum cadat elusus
+  ratione ruentis acervi, qui
+  redit in fastos et annis
+  miraturque.&lt;/p&gt;
+  &lt;ol&gt;
+    &lt;li&gt;Iste quidem&lt;/li&gt;
+    &lt;li&gt;inter ponetur&lt;/li&gt;
+  &lt;/ol&gt;</pre>
+						<pre>
+  &lt;p&gt;Indignor quicquam
+  reprehendi, non quia
+  crasse compositum illepedeve
+  putetur, sed quia nuper,
+  nec veniam antiquis, sed
+  honorem Brevi vel toto
+  est iunior anno.&lt;/p&gt;
+  &lt;ol&gt;
+    &lt;li&gt;Iste quidem&lt;/li&gt;
+    &lt;li&gt;inter ponetur&lt;/li&gt;
+  &lt;/ol&gt;
+  &lt;p&gt;Utor permisso, caudaeque
+  pilos ut equinae paulatim
+  vello unum, demo etiam unum.
+  Si meliora dies, ut vina,
+  poemata reddit, scire velim,
+  chartis perficit quotus
+  pretium quotus arroget
+  annus.&lt;/p&gt;
+&lt;/<span class="hljs-name">body</span>&gt;</pre>
+					</div>
+				</section>
+				<section>
+					<h3>Praxis - CSS - Aufgabe 4</h3>
+					<p>Erstellt das CSS-Styling um das HTML-Dokumt so aussehen zu lassen:</p>
+					<img src="./images/css-praxis-aufgabe4.jpg" alt="Praxis CSS Aufgabe 4" />
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>CSS - Lösung Aufgabe 1</h3>
+					<p>Die Elemente mit welchen Ids werden hier selektiert?</p>
+					<div class="two-columns-half-half">
+						<ul>
+							<li>h2: "h2"</li>
+							<li>.b: "ol1", "p3"</li>
+							<li>#li2: "li2"</li>
+							<li>p[lang=de]: "p3"</li>
+							<li>p[lang="de"]: "p3"</li>
+							<li>*[title="x"]</li>
+							<li>*[title="x abc"]</li>
+							<li>*[title~="x"]: "h2", "li1"</li>
+							<li>*[title~="x abc"]</li>
+						</ul>
+						<ul>
+							<li>*[title|="abc"]</li>
+							<li>*[title|="x abc"]: "li1"</li>
+							<li>*[title^="abc"]</li>
+							<li>*[title$="c z"]: "h2"</li>
+							<li>*[title*="abc"]: "h2", "li1"</li>
+							<li>*[title*= "x abc"]: "h2", "li1"</li>
+						</ul>
+					</div>
+				</section>
+				<section>
+					<h3>CSS - Lösungen Aufgabe 2</h3>
+					<p>Die Elemente mit welchen Ids werden selektiert?</p>
+					<ul>
+						<li>h2: "h2", "h3"</li>
+						<li>p li</li>
+						<li>ol li: "li1", "li2", "li3"</li>
+						<li>h2 ~ p: "p2", "p3", "p4"</li>
+						<li>h2 > p</li>
+						<li>p + p</li>
+						<li>h1 ~ h2: "h2", "h3"</li>
+						<li>ol *: "li1", "li2", "b", "li3"</li>
+						<li>ol > *: "li1", "li2", "li3"</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Lösungen Aufgabe 2</h3>
+					<p>Die Elemente mit welchen Ids werden selektiert?</p>
+					<ul>
+						<li>:first-child: "h1", "li1", "b"</li>
+						<li>:only-child: "b"</li>
+						<li>h2:first-of-type: "h2"</li>
+						<li>.k: "p4"</li>
+						<li>.p4</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Lösungen Aufgabe 3</h3>
+					<p>Die Elemente mit welchen Ids werden selektiert?</p>
+					<ul>
+						<li>p[lang~=de] p[lang=fr]</li>
+						<li>p[lang~=de] ~ p[lang=fr]: "p2"</li>
+						<li>p[lang~=de] + p[lang=fr]</li>
+						<li>#ol1 *[title|=abc]</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Lösung Aufgabe 4</h3>
+					<a
+						href="https://gitlab.com/chr1shaefn3r-dhbw/vorlesung-webeng1/-/blob/master/added_2021/css/code-examples/10_aufgabe4/aufgabe4.html">Lösung</a>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>CSS - Box-Modell</h3>
+					<img src="./images/css-Boxmodell.png" alt="CSS Boxmodel" />
+				</section>
+				<section>
+					<h3>CSS - Abstände und Größe</h3>
+					<ul>
+						<li>Innenabstände (padding)
+							<ul>
+								<li>-left, -right, -top, -bottom</li>
+								<li class="fragment" data-fragment-index="1">padding mit vier Werten:<br />
+									<span class="smaller-font">padding: 10px 20px 30px 40px (top right bottom
+										left)</span>
+								</li>
+								<li class="fragment" data-fragment-index="2">padding mit einem Werte: alle Abstände
+									gleich</li>
+							</ul>
+						</li>
+						<li class="fragment" data-fragment-index="4">Außenabstände (margin)
+							<ul>
+								<li class="fragment" data-fragment-index="4">-left, -right, -top, -bottom</li>
+								<li class="fragment" data-fragment-index="4">margin mit einem und vier Werten: siehe
+									padding</li>
+							</ul>
+						</li>
+						<li class="fragment" data-fragment-index="5">Größe
+							<ul>
+								<li class="fragment" data-fragment-index="6">width, min-width, max-width: Breite</li>
+								<li class="fragment" data-fragment-index="7">height, min-height, max-height: Höhe</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Abstände und Größe</h3>
+					<iframe class="code-example full-width"
+						data-src="./code-examples/12_margin-padding/margin-padding.html"></iframe>
+					<pre class="language-html">
+						<code class="hljs" data-code="./code-examples/12_margin-padding/margin-padding.html" data-line-numbers="|9-15|16-22|23-29|30-36|37-43|44-50"></code>
+					</pre>
+				</section>
+				<section>
+					<h3>CSS - Abstände und Größe</h3>
+					<ul>
+						<li>overflow: Umgang mit zu großen Inhalten (<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/overflow">MDN</a>)
+							<ul>
+								<li>auto: Browser entscheidet</li>
+								<li class="fragment">visible: Inhalt ragt über das Element hinaus</li>
+								<li class="fragment">hidden: Inhalt wird abgeschnitten</li>
+								<li class="fragment">scroll: Inhalt wird abgeschnitten mit Scrollbar</li>
+							</ul>
+						</li>
+						<li class="fragment">clip: Inhalt unabhängig von der Größe des Elementes zuschneiden
+							<ul>
+								<li class="fragment">shape value: z.B. rect(top, right, bottom, left)</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Rahmen</h3>
+					<ul>
+						<li>border-width: Breite des Rahmens<br />border-left-width, -right-, -top-, -bottom-</li>
+						<li class="fragment">border-style: Art des Rahmens
+							<ul>
+								<li>solid, dotted, dashed, double, groove, ridge, inset, outset, hidden, none</li>
+							</ul>
+						</li>
+						<li class="fragment">border-color: Farbe des Rahmens</li>
+						<li class="fragment li-space-above">border: &lt;width&gt; &lt;style&gt; &lt;color&gt;</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Rahmen - Collapse</h3>
+					<ul>
+						<li>border-collapse: Zusammenfassen von direkt benachbarten Rahmens
+							<ul>
+								<li>collapse, separate</li>
+							</ul>
+						</li>
+					</ul>
+					<iframe class="code-example full-width min-height-200"
+						data-src="./code-examples/11_border-collapse/border-collapse.html"></iframe>
+					<ul class="fragment">
+						<li>border-collapse: collapse
+							<ul>
+								<li>none + border = border</li>
+								<li>hidden + border = hidden</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>CSS - Anordnung von Elementen</h3>
+					<ul>
+						<li>Inline: &lt;span&gt;
+							<ul>
+								<li>Bildung eines inneren Bereiches Zwecks Formatierung</li>
+							</ul>
+						</li>
+						<li class="fragment">Block Semantisch: &lt;header&gt;, &lt;main&gt;, &lt;footer&gt;,
+							&lt;navigation&gt;;
+							Generisch: &lt;div&gt;
+							<ul>
+								<li class="fragment">Gruppierung von Block-Elementen</li>
+								<li class="fragment">Ohne CSS nur standard Block-Element Darstellung</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Anordnung von Elementen</h3>
+					<ul>
+						<li>float: left, right, none
+							<ul>
+								<li>Element wird vom nachfolgenden Nicht-Float-Objekt umflossen</li>
+							</ul>
+						</li>
+					</ul>
+					<iframe class="code-example full-width min-height-200"
+						data-src="./code-examples/13_float/float.html"></iframe>
+				</section>
+				<section>
+					<h3>CSS - Anordnung von Elementen</h3>
+					<ul>
+						<li>clear: left, right, both, none
+							<ul>
+								<li>Erzwingt den Abbruch des Umflusses</li>
+								<li>left: im Falle eines float: left</li>
+								<li>right: im Falle eines float: right</li>
+								<li>both: in jedem Fall</li>
+							</ul>
+						</li>
+					</ul>
+					<iframe class="code-example full-width min-height-200"
+						data-src="./code-examples/14_clear/clear.html"></iframe>
+				</section>
+				<section>
+					<h3>CSS - Anordnung von Elementen</h3>
+					<ul>
+						<li>top, left, bottom, right
+							<ul>
+								<li>Angabe der (relativen) Position</li>
+							</ul>
+						</li>
+						<li class="fragment">position: static, relative, absolute, fixed (<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/position">MDN</a>)
+							<ul>
+								<li>static: keine besondere Positionierung</li>
+								<li class="fragment">relative: relativ zur Anfangsposition</li>
+								<li class="fragment">absolute: bezogen auf den Rand des nächsthöheren Vorfahrenelements
+								</li>
+								<li class="fragment">fixed: bezogen auf Browserfenster</li>
+								<li class="fragment">Achtung: absolute und fixed geben den ursprünglichen Platz frei!
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Anordnung von Elementen</h3>
+					<ul>
+						<li>position: absolut, relative, fixed, static</li>
+					</ul>
+					<iframe class="code-example full-width min-height-200"
+						data-src="./code-examples/15_position/position.html"></iframe>
+				</section>
+				<section>
+					<h3>CSS - Anordnung von Elementen</h3>
+					<ul>
+						<li>z-index: Ganzzahl
+							<ul>
+								<li>Ordnungsnummer für die Überlagerung</li>
+								<li>kleine Nummern hinten, große Nummern vorne</li>
+							</ul>
+						</li>
+					</ul>
+					<iframe class="code-example full-width min-height-200"
+						data-src="./code-examples/16_z-index/z-index.html"></iframe>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>CSS - Sichtbarkeit</h3>
+					<ul>
+						<li>visibility: visible, hidden, collapse (<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/visibility">MDN</a>)<br />
+							Anzeigen mit Platzhalter
+							<ul>
+								<li class="fragment">visible: Element ist sichtbar</li>
+								<li class="fragment">hidden: Element ist nicht sichtbar</li>
+								<li class="fragment">collapse: wie hidden<br />
+									Ausnahme: in table oder flexbox <em>ohne</em> Platzhalter</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Sichtbarkeit</h3>
+					<ul>
+						<li>display: block, inline, inline-block, list-item, none, ... (<a
+								href="https://developer.mozilla.org/en-US/docs/Web/CSS/display">MDN</a>)<br />
+							Anzeigen ohne Platzhalter
+							<ul>
+								<li class="fragment">block: erzwingt Block-Element</li>
+								<li class="fragment">inline: erzwingt Inline-Element</li>
+								<li class="fragment">none: Element ist nicht sichtbar</li>
+								<li class="fragment li-space-above">inline-block: Block-Element das umflossen wird wie
+									ein
+									Inline-Element</li>
+								<li class="fragment li-space-above">list-item: wie block, aber mit Aufzählungszeichen
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>CSS - Flexbox</h3>
+					<p>Ziel: einfachere und einheitlichere Handhabung als float/clear/margin/padding</p>
+					<ol>
+						<li class="fragment">Flex-Container
+							<ul>
+								<li>Enthaltene Flex-Items, hierin wird angeordnet</li>
+								<li><span class="hljs-attribute">display</span>: <span class="hljs-value">flex</span>;
+								</li>
+							</ul>
+						</li>
+						<li class="fragment">Flex-Item
+							<ul>
+								<li>Alle direkten Kinder werden angeordnet</li>
+								<li>Keine automatischen Zeilenumbrüche</li>
+							</ul>
+						</li>
+					</ol>
+				</section>
+				<section>
+					<h3>CSS - Flexbox</h3>
+					<img src="./images/flex_terms.png" alt="Flexbox terms" />
+				</section>
+				<section>
+					<h3>CSS - Flexbox</h3>
+					<iframe class="code-example min-height-200"
+						data-src="./code-examples/20_flexbox/flexbox.html"></iframe>
+					<pre class="language-html">
+							<code class="hljs" style="max-height: 300px" data-code="./code-examples/20_flexbox/flexbox.html" data-line-numbers="19-27|9-14"></code>
+						</pre>
+				</section>
+				<section>
+					<h3>CSS - flex-flow</h3>
+					<ul>
+						<li>Fließrichtung ändern
+							<ul>
+								<li><span class="hljs-attribute">flex-flow</span>: <span
+										class="hljs-value">&lt;direction&gt; &lt;wrap&gt;</span>;</li>
+								<li class="fragment"><span class="hljs-attribute">flex-flow</span>: <span
+										class="hljs-value">row
+										nowrap</span>;</li>
+								<li class="fragment"><span class="hljs-attribute">flex-flow</span>: <span
+										class="hljs-value">row-reverse wrap</span>;</li>
+								<li class="fragment"><span class="hljs-attribute">flex-flow</span>: <span
+										class="hljs-value">row
+										wrap</span>;</li>
+							</ul>
+						</li>
+					</ul>
+					<iframe class="code-example full-width min-height-200"
+						data-src="./code-examples/20_flexbox/flex-flow.html"></iframe>
+				</section>
+				<section>
+					<h3>CSS - flex-direction</h3>
+					<ul>
+						<li>Fließrichtung ändern
+							<ul>
+								<li><span class="hljs-attribute">flex-direction</span>: <span
+										class="hljs-value">column</span>;</li>
+								<li><span class="hljs-attribute">flex-direction</span>: <span
+										class="hljs-value">column-reverse</span>;</li>
+							</ul>
+						</li>
+					</ul>
+					<iframe class="code-example full-width"
+						data-src="./code-examples/20_flexbox/flex-direction.html"></iframe>
+					<ul class="fragment">
+						<li>Alternativen
+							<ul>
+								<li>flex-direction: row/row-reverse/column/column-reverse</li>
+								<li>flex-wrap: nowrap/wrap/wrap-reverse</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - justify-content</h3>
+					<ul>
+						<li>Horizontale Ausrichtung aller Items
+							<ul>
+								<li><span class="hljs-attribute">justify-content</span>: <span
+										class="hljs-value">flex-start</span>; (linksbündig)</li>
+								<li class="fragment"><span class="hljs-attribute">justify-content</span>: <span
+										class="hljs-value">flex-end</span>; (rechtsbündig)</li>
+								<li class="fragment"><span class="hljs-attribute">justify-content</span>: <span
+										class="hljs-value">center</span>; (zentriert)</li>
+								<li class="fragment"><span class="hljs-attribute">justify-content</span>: <span
+										class="hljs-value">space-between</span>; (links bis rechts)</li>
+								<li class="fragment"><span class="hljs-attribute">justify-content</span>: <span
+										class="hljs-value">space-around</span>;<br />(gleichmäßig verteilt zentriert)
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<iframe class="code-example full-width min-height-200"
+						data-src="./code-examples/20_flexbox/justify-content.html"></iframe>
+				</section>
+				<section>
+					<h3>CSS - align-items</h3>
+					<ul>
+						<li>Vertikale Ausrichtung aller Items
+							<ul>
+								<li><span class="hljs-attribute">align-items</span>: <span
+										class="hljs-value">flex-start</span>; (oben)</li>
+								<li class="fragment"><span class="hljs-attribute">align-items</span>: <span
+										class="hljs-value">flex-end</span>; (unten)</li>
+								<li class="fragment"><span class="hljs-attribute">align-items</span>: <span
+										class="hljs-value">center</span>; (zentriert)</li>
+								<li class="fragment"><span class="hljs-attribute">align-items</span>: <span
+										class="hljs-value">baseline</span>; (Schrift Basislinie)</li>
+							</ul>
+						</li>
+					</ul>
+					<iframe class="code-example full-width min-height-300"
+						data-src="./code-examples/20_flexbox/align-items.html"></iframe>
+				</section>
+				<section>
+					<h3>CSS - gaps</h3>
+					<ul>
+						<li>Innere Abstände
+							<ul>
+								<li><span class="hljs-attribute">row-gap</span>: <span class="hljs-value">10px</span>;
+									(Zeilenabstand)</li>
+								<li><span class="hljs-attribute">column-gap</span>: <span
+										class="hljs-value">30px</span>; (Spaltenabstand)</li>
+								<li class="fragment"><span class="hljs-attribute">gap</span>: <span
+										class="hljs-value">10px 30px</span>;
+									(Kurzform)</li>
+								<li class="fragment"><span class="hljs-attribute">gap</span>: <span
+										class="hljs-value">20px</span>;
+									(Kurzform, gleicher Abstand)</li>
+							</ul>
+						</li>
+					</ul>
+					<iframe class="code-example full-width min-height-200"
+						data-src="./code-examples/20_flexbox/gap.html"></iframe>
+				</section>
+				<section>
+					<h3>CSS - Flexbox</h3>
+					<ul>
+						<li>Reihenfolge bestimmen
+							<ul>
+								<li><span class="hljs-attribute">order</span>: <span class="hljs-value">&lt;ganze
+										Zahl&gt;</span>; (Bei jedem Item angeben!)</li>
+								<li><span class="hljs-attribute">order</span>: <span class="hljs-value">-1</span>; (Item
+									"nach Vorne" holen)</li>
+							</ul>
+						</li>
+						<li class="fragment">Größenverhalten eines Items
+							<ul>
+								<li><span class="hljs-attribute">flex-start</span>: <span class="hljs-value">Feste
+										Längenangabe, %-Anteil</span>;<br />Basis-Breite eines Elements</li>
+								<li class="fragment"><span class="hljs-attribute">flex-grow</span>: <span
+										class="hljs-value">&lt;Zahl&gt;</span>; (Wachstumsfaktor)</li>
+								<li class="fragment"><span class="hljs-attribute">flex-shrink</span>: <span
+										class="hljs-value">&lt;Zahl&gt;</span>; (Schrumpffaktor)</li>
+								<li class="fragment"><span class="hljs-attribute">flex</span>: <span
+										class="hljs-value">&lt;grow&gt;
+										&lt;shrink&gt; &lt;start&gt;</span>; (Kurzform)</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>CSS - Grid</h3>
+					<p>Ziel: Anordnung in Matrix-Raster</p>
+					<ol>
+						<li class="fragment">Grid-Container
+							<ul>
+								<li>Enthaltene Grid-Items, hierin wird angeordnet</li>
+								<li><span class="hljs-attribute">display</span>: <span class="hljs-value">grid</span>;
+								</li>
+							</ul>
+						</li>
+						<li class="fragment">Grid-Item
+							<ul>
+								<li>Alle direkten Kinder werden angeordnet</li>
+							</ul>
+						</li>
+					</ol>
+				</section>
+				<section>
+					<h3>CSS - Grid</h3>
+					<ul>
+						<li>Spalten festlegen
+							<ul>
+								<li><span class="hljs-attribute">grid-template-columns</span>: <span
+										class="hljs-value">&lt;Zahl/auto&gt;*</span>;<br />Anzahl Parameter bestimmt
+									Anzahl Spalten</li>
+								<li class="fragment" data-fragment-index="1"><span class="hljs-value">auto</span>:
+									Browser bestimmt Spaltenbreite</li>
+								<li class="fragment" data-fragment-index="2"><span class="hljs-value">Zahl</span>:
+									Längenangabe mit fester/relativer Breite
+									<ul>
+										<li class="fragment" data-fragment-index="2">Neue Einheit fr (fraction/Anteile)
+										</li>
+										<li class="fragment" data-fragment-index="3">Bestimmt nicht die Breite des
+											Inhalts!</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<iframe class="code-example full-width min-height-200"
+						data-src="./code-examples/21_grid/two-template-columns.html"></iframe>
+				</section>
+				<section>
+					<h3>CSS - Grid</h3>
+					<ul>
+						<li>Zeilen festlegen
+							<ul>
+								<li><span class="hljs-attribute">grid-template-rows</span>: <span
+										class="hljs-value">&lt;Zahl/auto&gt;*</span>;<br />Anzahl Parameter bestimmt
+									Anzahl Zeilen</li>
+								<li class="fragment" data-fragment-index="1"><span class="hljs-value">auto</span>:
+									Browser bestimmt Zeilenhöhe</li>
+								<li class="fragment" data-fragment-index="1"><span class="hljs-value">Zahl</span>:
+									Längenangabe mit fester/relativer Breite
+									<ul>
+										<li class="fragment" data-fragment-index="1">Neue Einheit fr (fraction/Anteile)
+										</li>
+										<li class="fragment" data-fragment-index="1">Bestimmt nicht die Höhe des
+											Inhalts!</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+					<iframe class="code-example full-width min-height-200"
+						data-src="./code-examples/21_grid/three-template-rows.html"></iframe>
+				</section>
+				<section>
+					<h3>CSS - Grid</h3>
+					<ul>
+						<li>Wiederholungen mit repeat
+							<ul>
+								<li><span class="hljs-value">repeat(&lt;Anzahl/auto-fill&gt;,
+										&lt;Längenangabe&gt;*)</span></li>
+								<li class="fragment"><span class="hljs-attribute">grid-template-columns</span>: <span
+										class="hljs-value">1fr repeat(5, 3fr) 1fr</span>;</li>
+								<li class="fragment"><span class="hljs-attribute">grid-template-rows</span>: <span
+										class="hljs-value">repeat(5, 3fr 2fr)</span>;</li>
+								<li class="fragment"><span class="hljs-value">auto-fill</span> (so viele Spalten, wie
+									möglich)</li>
+								<li class="fragment"><span class="hljs-value">minmax(&lt;min&gt;, &lt;max&gt;)</span>
+									(variable Längenangabe)</li>
+							</ul>
+						</li>
+					</ul>
+					<iframe class="code-example full-width min-height-200"
+						data-src="./code-examples/21_grid/two-template-columns-repeat.html"></iframe>
+				</section>
+				<section>
+					<h3>CSS - Grid</h3>
+					<ul>
+						<li>Items über mehrere Rasterelemente
+							<ul>
+								<li class="fragment"><span class="hljs-attribute">grid-(row|column)-start</span>: <span
+										class="hljs-value">&lt;Zahl&gt;</span>;</li>
+								<li class="fragment"><span class="hljs-attribute">grid-(row|column)-end</span>: <span
+										class="hljs-value">&lt;Zahl&gt;</span>;</li>
+								<li class="fragment"><span class="hljs-attribute">grid-(row|column)</span>: <span
+										class="hljs-value">&lt;Start&gt; / &lt;End&gt;</span>;</li>
+								<li class="fragment"><span class="hljs-attribute">grid-area</span>: <span
+										class="hljs-value">&lt;Row-Start&gt;/&lt;Column-Start&gt;/&lt;Row-End&gt;/&lt;Column-End&gt;</span>;
+								</li>
+							</ul>
+						</li>
+						<li class="fragment">Werte
+							<ul>
+								<li class="smaller-font">Positive Werte: gezählt vom Anfang beginnend mit 1</li>
+								<li class="smaller-font">Negative Werte: gezählt vom Ende beginnend mit -1</li>
+								<li class="fragment">Über ganze Zeile: <span class="hljs-attribute">grid-column</span>:
+									<span class="hljs-value">1/-1</span>;</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Grid</h3>
+					<ul>
+						<li>Items über mehrere Rasterelemente</li>
+					</ul>
+					<iframe class="code-example full-width"
+						data-src="./code-examples/21_grid/grid-row-column.html"></iframe>
+					<pre class="language-html">
+						<code class="hljs" style="max-height: 300px" data-code="./code-examples/21_grid/grid-row-column.html" data-line-numbers="22-29"></code>
+					</pre>
+				</section>
+				<section>
+					<h3>CSS - Grid-Ausirchtung</h3>
+					<ul>
+						<li>Ausrichten der Items innerhalb des Containers (Analog zu flexbox)
+							<ul>
+								<li class="fragment">Für alle Items im Container<br /><span
+										class="hljs-attribute">align-items</span>, <span
+										class="hljs-attribute">justify-items</span></li>
+								<li class="fragment">Für ein einzelnes Item im Container<br /><span
+										class="hljs-attribute">align-self</span>, <span
+										class="hljs-attribute">justify-self</span></li>
+							</ul>
+						</li>
+						<li class="fragment">Ausrichten aller Items im Container
+							<ul>
+								<li><span class="hljs-attribute">align-content</span>: <span
+										class="hljs-value">&lt;start/end/center&gt;</span>; (vertikal)</li>
+								<li><span class="hljs-attribute">justify-content</span>: <span
+										class="hljs-value">&lt;start/end/center&gt;</span>; (horizontal)</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Weiteres</h3>
+					<ul>
+						<li>Viele weitere Möglichkeiten
+							<ul>
+								<li class="fragment" data-fragment-index="1">Benamste template areas<br /><span
+										class="hljs-attribute">grid-template-areas</span>, <span
+										class="hljs-attribute">grid-area</span> (<a
+										href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-template-areas">MDN</a>)
+								</li>
+								<li class="fragment" data-fragment-index="2">Beeinflussung des
+									Layout-Algorithmus<br /><span class="hljs-attribute">grid-auto-flow</span> (<a
+										href="https://developer.mozilla.org/en-US/docs/Web/CSS/grid-auto-flow">MDN</a>)
+								</li>
+								<li class="fragment" data-fragment-index="2">...</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Grid vs Flexbox</h3>
+					<p>Was ist der Unterschied?</p>
+					<ul>
+						<li class="fragment">Grid spezifiziert die Größen-Eigenschaften auf dem Container, Flexbox auf
+							den einzelnen Elementen</li>
+						<li class="fragment">Flexbox ist ein eindimensionales Layout<br />Grid ist ein zweidimensionales
+							Layout</li>
+					</ul>
+					<p class="fragment">Wann Grid-Layout und wann Flexbox verwenden?</p>
+					<ul>
+						<li class="fragment">Grobe Richtlinie: Seitenlayouts mit Grid, Komponentenlayouts mit Flexbox
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>CSS - Prioritäten</h3>
+					<p>Browser berechnet für jede Eigenschaft und jedes Element die Menge der anzuwendenden Regeln</p>
+					<ul>
+						<li class="fragment">Erste Priorisierung nach Ursprung und Wichtigkeit
+							<ul>
+								<li>Wichtige Regeln aus Benutzer-Stylesheet</li>
+								<li>Wichtige Regeln aus Autoren-Stylesheet</li>
+								<li>Regeln aus Benutzer-Stylesheet</li>
+								<li>Regeln aus Autoren-Stylesheet</li>
+								<li>Regeln aus Browser-Stylesheet</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Prioritäten</h3>
+					<ul>
+						<li>Zweite Priorisierung nach Spezifität
+							<ul class="fragment" data-fragment-index="1">
+								<li class="fragment" data-fragment-index="4">Inline-Style</li>
+								<li class="fragment" data-fragment-index="3">ID-Selektor (#example)</li>
+								<li class="fragment" data-fragment-index="2">Class-Selektor (.example),
+									Attribut-Selektor ([type="radio"]), pseudo-classes
+									(:hover)</li>
+								<li class="fragment" data-fragment-index="1">Type-Selektor (h1), pseudo-elements
+									(::marker)</li>
+							</ul>
+						</li>
+					</ul>
+					<p class="fragment" data-fragment-index="4">Siehe auch: <a
+							href="https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity">MDN - CSS
+							Specificity</a>, und <a href="https://specifishity.com/">specifishity.com</a></p>
+				</section>
+				<section>
+					<h3>CSS - Wichtige Regel</h3>
+					<p>CSS-Regeln können mittels "!important" als wichtig markiert werden</p>
+					<p class="fragment"><span class="hljs-selector-tag">Selektor</span> { <span
+							class="hljs-attribute">Eigenschaft</span>: <span class="hljs-value">Wert</span> <span
+							class="hljs-meta">!important</span>; }</p>
+					<p class="fragment">Wichtig: Sollte in der Anwendungsentwicklung die Ausnahme bleiben</p>
+					<p class="fragment">Wichtig: Ist in der Framework/Bibliothek/Plugin Entwicklung
+						<strong>verboten</strong>
+					</p>
+				</section>
+				<section>
+					<h3>CSS - Prioritäten - Best Practices</h3>
+					<p>Vermeidet die Situation, in denen mehr als eine Regel für ein Element gilt!<br />Ausnahme:
+						Überschreiben von Regeln der Eltern</p>
+					<p class="fragment">Verwendet eine einheitliche Vorgehensweise
+					<ul class="fragment">
+						<li>Identifikation über Elementnamen oder(!)</li>
+						<li>Identifikation über Klassen oder</li>
+						<li>...</li>
+					</ul>
+					</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>CSS - Media-Queries</h3>
+					<p>CSS-Regeln auf spezifischen Medientyp einschränken</p>
+					<p><span class="hljs-keyword">@media</span> &lt;medium&gt; { ... }</p>
+					<ul>
+						<li class="fragment">Media Types: all, print, screen</li>
+						<li class="fragment">Media Features: width, orientation, prefers-color-scheme, color and many
+							more
+							<ul>
+								<li>Ranges mit "min-" und "max-" prefix</li>
+							</ul>
+						</li>
+						<li class="fragment">Komplexe Queries
+							<ul>
+								<li>Logische Verkettung, Und: "and", Oder: ","</li>
+								<li>Negierung, "not"</li>
+							</ul>
+						</li>
+					</ul>
+					<p><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media">MDN: @media</a></p>
+				</section>
+				<section>
+					<h3>CSS - Media-Queries</h3>
+					<p>Beispiel "Druck"</p>
+					<p>
+					<pre>
+<span class="hljs-keyword">@media</span> print {
+  <span class="hljs-selector-tag">nav</span> {
+    <span class="hljs-attribute">display</span>: none;
+  }
+}</pre>
+					</p>
+					<p class="fragment" data-fragment-index="1">Beispiel "Großes Displays"<br />(Inhalt nicht auf der
+						ganzen Breite)</p>
+					<p>
+					<pre class="fragment" data-fragment-index="1">
+<span class="hljs-keyword">@media</span> screen and (min-width: 1000px) {
+  <span class="hljs-selector-id">#content</span> {
+    <span class="hljs-attribute">max-width</span>: 80%;
+    <span class="hljs-attribute">margin</span>: auto;
+  }
+}</pre>
+					</p>
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>Praxis - CSS - Aufgabe 5</h3>
+					<pre class="language-html">
+						<code class="hljs" data-code="./code-examples/17_aufgabe5/aufgabe5.html" data-line-numbers="11-26"></code>
+					</pre>
+					<p><a
+							href="https://gitlab.com/chr1shaefn3r-dhbw/vorlesung-webeng1/-/blob/master/added_2021/css/code-examples/17_aufgabe5/aufgabe5.html">./code-examples/17_aufgabe5/aufgabe5.html</a>
+					</p>
+				</section>
+				<section>
+					<h3>Praxis - CSS - Aufgabe 5</h3>
+					<ul class="smaller-font">
+						<li>Färbt den Hintergrund alle geraden Tabellenzeilen grau</li>
+						<li>Gebt allen Tabellenzeilen mit nur einer Zelle einen roten Rahmen</li>
+						<li>Gebt der Tabelle ein Gitternetz in blau</li>
+						<li>Gebt der ersten Überschrift einen serifenlosen Zeichensatz in der Größe 16pt und Fettdruck
+						</li>
+						<li>Absatz 1 soll linksbündig angeordnet werden, der Absatz 4 rechtsbündig</li>
+						<li>Zweite Spalte der Tabelle soll zentriert erscheinen</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Praxis - CSS - Aufgabe 6</h3>
+					<p class="smaller-font">Auf welcher Position (x,y) befindet sich die rechte untere Ecke des roten,
+						grünen, blauen und orangen Rechtecks?</p>
+					<pre class="language-css">
+						<code class="hljs" data-code="./code-examples/18_aufgabe6/aufgabe6.css"></code>
+					</pre>
+					<p><a
+							href="https://gitlab.com/chr1shaefn3r-dhbw/vorlesung-webeng1/-/blob/master/added_2021/css/code-examples/18_aufgabe6/aufgabe6.css">./code-examples/18_aufgabe6/aufgabe6.css</a>
+					</p>
+				</section>
+				<section>
+					<h3>Praxis - CSS - Aufgabe 7</h3>
+					<div class="two-columns-half-half">
+						<pre>
+&lt;<span class="hljs-name">body</span>&gt;
+  &lt;div class="box"&gt;
+    &lt;<span class="hljs-name">h1</span>&gt;Meine Überschrift&lt;/<span class="hljs-name">h1</span>&gt;
+    &lt;p&gt;&lt;span
+      class="firstletter"&gt;I
+      &lt;/span&gt;ste quidem veteres
+      inter ponetur honeste,
+      qui vel mense brevi vel
+      toto est iunior anno.
+    &lt;/p&gt;
+    &lt;p&gt;Utor permisso, caudaeque
+      pilos ut equinae paulatim
+      vello unum, demo etiam
+      unum, dum cadat elusus
+      ratione ruentis acervi,
+      qui redit in fastos
+      et annis miraturque.
+    &lt;/p&gt;
+</pre>
+						<pre>
+    &lt;table&gt;
+      &lt;tr class="odd row"&gt;
+        &lt;td&gt;Jakobus&lt;/td&gt;
+        &lt;td&gt;Müller&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr class="even odd"&gt;
+        &lt;td&gt;Petra&lt;/td&gt;
+        &lt;td&gt;Maier&lt;/td&gt;
+      &lt;/tr&gt;
+      &lt;tr class="row odd"&gt;
+        &lt;td colspan="2"&gt;
+        Georg IV&lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/table&gt;
+    &lt;div class="important"&gt;
+    Wichtig!!&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/<span class="hljs-name">body</span>&gt;</pre>
+					</div>
+				</section>
+				<section>
+					<h3>Praxis - CSS - Aufgabe 7</h3>
+					<img src="./images/css-praxis-aufgabe7.jpg" alt="Praxis CSS Aufgabe 7" />
+				</section>
+				<section>
+					<h3>Praxis - CSS - Aufgabe 8</h3>
+					<p>Aus dem Folien-Repo folgende Dateien herunterladen:
+					<ul>
+						<li><a
+								href="https://gitlab.com/chr1shaefn3r-dhbw/vorlesung-webeng1/-/raw/master/added_2021/css/code-examples/22_aufgabe8/aufgabe8.html">aufgabe8.html</a>
+						</li>
+						<li><a
+								href="https://gitlab.com/chr1shaefn3r-dhbw/vorlesung-webeng1/-/raw/master/added_2021/css/code-examples/22_aufgabe8/colors.css">colors.css</a>
+						</li>
+					</ul>
+					</p>
+					<p>Erstellt eine "layout.css" sodass es je nach Breite des Browsers wie folgt aussieht.</p>
+				</section>
+				<section>
+					<h3>Praxis - CSS - Aufgabe 8 - Breit</h3>
+					<p>Erstellt eine "layout.css" sodass es je nach Breite des Browsers wie folgt aussieht.</p>
+					<img src="./images/css-praxis-aufgabe8_breit.jpg" alt="Praxis CSS Aufgabe 8 Breit" />
+				</section>
+				<section>
+					<h3>Praxis - CSS - Aufgabe 8 - Schmal</h3>
+					<img src="./images/css-praxis-aufgabe8_schmal.jpg" style="max-height: 500px"
+						alt="Praxis CSS Aufgabe 8 Schmal" />
+				</section>
+			</section>
+			<section>
+				<section>
+					<h3>CSS - Lösung Aufgabe 6</h3>
+					<ul>
+						<li>rot: bottom=260,right:260</li>
+						<li>grün: bottom=126,right:226</li>
+						<li>blau: bottom=218,right:226</li>
+						<li>orange: bottom=162,right:277</li>
+					</ul>
+				</section>
+				<section>
+					<h3>CSS - Lösung Aufgabe 7</h3>
+					<a
+						href="https://gitlab.com/chr1shaefn3r-dhbw/vorlesung-webeng1/-/blob/master/added_2021/css/code-examples/19_aufgabe7/aufgabe7.html">Lösung</a>
+				</section>
+				<section>
+					<h3>CSS - Lösung Aufgabe 8</h3>
+					<a
+						href="https://gitlab.com/chr1shaefn3r-dhbw/vorlesung-webeng1/-/raw/master/added_2021/css/code-examples/22_aufgabe8/layout-loesung.css">Lösung:
+						layout.css</a>
+				</section>
+			</section>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+		<script src="plugin/externalcode/externalcode.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				slideNumber: "c/t",
+				hash: true,
+				pdfSeparateFragments: false,
+				// No Vertical centering of slides
+				center: false,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [Externalcode, RevealMarkdown, RevealHighlight, RevealNotes]
+			});
+			Reveal.addEventListener('ready', function () {
+				var header = $('#hidden').html();
+				$('.slide-background').append(header);
+			});
+		</script>
+		<div id="hidden" style="display:none;">
+			<header>
+				<img height="40" src="dhbw-logo-small.svg" alt="DHBW-Logo" />
+			</header>
+		</div>
+</body>
+
+</html>
