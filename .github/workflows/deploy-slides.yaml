@@ -3,7 +3,7 @@ name: "📦🔰 Deploy slides via GitHub Pages"
 on:
   push:
     branches:
-    - master
+    - teppichmesser
   workflow_dispatch:
 
 jobs:
