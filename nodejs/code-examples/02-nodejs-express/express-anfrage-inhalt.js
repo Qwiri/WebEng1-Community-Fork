@@ -10,7 +10,7 @@ const port = 8000;
 app.use(express.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
-    res.send(req.body);
+    return res.send(req.body);
 });
 
 app.listen(port, () => {
