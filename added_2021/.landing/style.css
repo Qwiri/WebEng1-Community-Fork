@@ -96,3 +96,19 @@ a {
     text-decoration: none;
     color: var(--text-red);
 }
+
+#features {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+#features li {
+  padding-left: 4rem;
+  text-indent: -1em;
+}
+
+#features li:before {
+  content: "🥝";
+  padding-right: 5px;
+}
