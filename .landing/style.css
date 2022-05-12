@@ -27,6 +27,8 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    gap: 1rem;
 }
 
 aside {
@@ -77,8 +79,9 @@ aside {
     background-color: black;
     border-radius: .5rem;
     padding: 1rem 0;
+    width: 100%;
 }
-#blackBox p {
+#blackBox p, #blackBox h2 {
     padding: 0 2rem;
 }
 .code {
