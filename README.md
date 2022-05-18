@@ -9,7 +9,10 @@ an der Dualen Hochschule Baden-Württemberg Karlsruhe.
 Die Folien sind mit [Reveal.js](https://revealjs.com/) erstellt. Ein einfaches
 öffnen der jeweiligen "index.html" stellt die Folien im Browser dar.
 
-## Lokal
+## Deployment
+Die deployete Version kannst du unter https://webeng1.d2a.io aurufen.
+
+### Lokal
 
 Um auch die Code-Beispiel nutzen zu können, müssen die Folien zwingend von
 einem Webserver ausgeliefert werden. Dafür ist das npm Projekt vorgesehen:
