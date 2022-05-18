@@ -52,6 +52,7 @@ jobs:
           <style>
           #qf-controls {
             position: absolute;
+            z-index: 1;
           }
           #qf-controls button {
             background: black;
