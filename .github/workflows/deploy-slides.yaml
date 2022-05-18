@@ -20,7 +20,7 @@ jobs:
         find: |
           <link rel="stylesheet" href="dist/theme/white.css">
         replace: |
-          <!-- Qwiri Fork Inject Start -->
+          <!-- Qwiri Fork Start -->
           <link rel="stylesheet alternate" id="night" href="dist/theme/night.css">
           <link rel="stylesheet" id="white" href="dist/theme/white.css">
           <link rel="stylesheet alternate" id="moon" href="dist/theme/moon.css">
@@ -40,7 +40,7 @@ jobs:
                 }
               }
           </script>
-          <!-- Qwiri Fork Inject end -->
+          <!-- / Qwiri Fork End -->
     
     - name: Add Change Theme Button
       uses: jacobtomlinson/gha-find-replace@v2
@@ -48,11 +48,26 @@ jobs:
         find: |
           <div class="reveal">
         replace: |
-          <!-- Qwiri Fork Inject start -->
-          <button onclick="window.location = '/'">Home</button>
-          <button onclick="toggleTheme()">Change Theme</button>
+          <!-- Qwiri Fork Start -->
+          <style>
+          #qf-controls {
+            position: absolute;
+          }
+          #qf-controls button {
+            background: black;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1rem 0.5rem 1rem;
+            color: white;
+          }
+          </style>
+          
+          <div id="qf-controls">
+            <button onclick="window.location = '/'">Home</button>
+            <button onclick="toggleTheme()">Change Theme</button>
+          </div>
+          <!-- / Qwiri Fork End -->
+          
           <div class="reveal">
-          <!-- Qwiri Fork Inject end -->
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
