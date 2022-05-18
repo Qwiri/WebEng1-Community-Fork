@@ -9,7 +9,7 @@
 
 	<link rel="stylesheet" href="dist/reset.css">
 	<link rel="stylesheet" href="dist/reveal.css">
-	<!-- Qwiri Fork Inject Start -->
+	<!-- Qwiri Fork Start -->
 <link rel="stylesheet alternate" id="night" href="dist/theme/night.css">
 <link rel="stylesheet" id="white" href="dist/theme/white.css">
 <link rel="stylesheet alternate" id="moon" href="dist/theme/moon.css">
@@ -29,7 +29,7 @@
       }
     }
 </script>
-<!-- Qwiri Fork Inject end -->
+<!-- / Qwiri Fork End -->
 
 	<!-- Theme used for syntax highlighted code -->
 	<link rel="stylesheet" href="plugin/highlight/monokai.css">
@@ -95,11 +95,26 @@
 -->
 
 <body>
-	<!-- Qwiri Fork Inject start -->
-<button onclick="window.location = '/'">Home</button>
-<button onclick="toggleTheme()">Change Theme</button>
+	<!-- Qwiri Fork Start -->
+<style>
+#qf-controls {
+  position: absolute;
+}
+#qf-controls button {
+  background: black;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  color: white;
+}
+</style>
+
+<div id="qf-controls">
+  <button onclick="window.location = '/'">Home</button>
+  <button onclick="toggleTheme()">Change Theme</button>
+</div>
+<!-- / Qwiri Fork End -->
+
 <div class="reveal">
-<!-- Qwiri Fork Inject end -->
 		<div class="slides">
 			<section>
 				<h1>Projekte</h1>
