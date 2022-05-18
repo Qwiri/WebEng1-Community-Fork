@@ -27,42 +27,41 @@
   <script>
     const { Markmap } = window.markmap;
     Markmap.create("svg#mindmap", null, {
-      "t": "heading", "d": 1, "v": "NodeJS",
+      "t": "heading", "d": 1, "v": "Webserver",
       "c": [
         {
-          "t": "heading", "d": 2, "v": "http",
+          "t": "heading", "d": 2, "v": "Aufgaben",
+        }, {
+          "t": "heading", "d": 2, "v": "Prozessmodelle",
+        }, {
+          "t": "heading", "d": 2, "v": "Getrennte Prozesse",
           "c": [
             {
-              "t": "list_item", "d": 4, "v": "Request-Listener"
+              "t": "list_item", "d": 4, "v": "Server Side Includes"
+            },
+            {
+              "t": "list_item", "d": 4, "v": "Common Gateway Interface"
             }
           ]
         }, {
-          "t": "heading", "d": 2, "v": "express",
+          "t": "heading", "d": 2, "v": "Eingebetteter Prozess",
           "c": [
             {
-              "t": "list_item", "d": 4, "v": "Routen"
+              "t": "list_item", "d": 4, "v": "Apache Module"
+            },
+            {
+              "t": "list_item", "d": 4, "v": "Information Server API"
             }
           ]
         }, {
-          "t": "heading", "d": 2, "v": "HTML dynamisch erzeugen",
+          "t": "heading", "d": 2, "v": "ohne",
           "c": [
             {
-              "t": "list_item", "d": 4, "v": "Server Side Includes (SSI)"
-            },
-            {
-              "t": "list_item", "d": 4, "v": "Hypertext Preprocessor (PHP)"
-            },
-            {
-              "t": "list_item", "d": 4, "v": "Active Server Pages (ASP)"
-            },
-            {
-              "t": "list_item", "d": 4, "v": "NodeJS Template Engine"
+              "t": "list_item", "d": 4, "v": "NodeJS"
+            }, {
+              "t": "list_item", "d": 4, "v": "Java",
             }
           ]
-        }, {
-          "t": "heading", "d": 2, "v": "Cookies"
-        }, {
-          "t": "heading", "d": 2, "v": "WebSocket"
         }
       ]
     });
