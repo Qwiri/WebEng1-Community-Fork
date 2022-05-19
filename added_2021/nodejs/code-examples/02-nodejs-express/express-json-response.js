@@ -1,10 +1,9 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 
-app.get('/', (_req, res) => {
-  // Note: this example differs from the original slides in this fork.
+app.get('/', (req, res) => {
   return res.json({
-    data: 'Hello World!'
+    data: "Hello World!"
   });
 });
 

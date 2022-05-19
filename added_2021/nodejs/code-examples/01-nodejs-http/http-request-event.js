@@ -1,12 +1,12 @@
-const http = require('http');
+const http = require("http");
 
 const server = http.createServer();
-server.on('request', (_req, res) => {
+server.on("request", (req, res) => {
     res.writeHead(200, {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
     });
     res.end(JSON.stringify({
-        data: 'Hello World!'
+        data: "Hello World!"
     }));
 });
 

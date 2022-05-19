@@ -5,8 +5,8 @@ const port = 8000;
 app.engine("eta", eta.renderFile);
 app.set("views", "./views"); // folder
 
-app.get("/", (_req, res) => {
-    res.render("hello-world.eta", { name: "Eta" });
+app.get("/", (req, res) => {
+    return res.render("hello-world.eta", { name: "Eta" });
 });
 
 app.listen(port, () => {

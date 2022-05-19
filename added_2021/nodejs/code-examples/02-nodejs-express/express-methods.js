@@ -1,9 +1,9 @@
 // app.METHOD(PATH, HANDLER)
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
+app.get("/", (req, res) => {
+    return res.send("Hello World!");
 });
 
-app.put('/user', (req, res) => {
-    res.send('Got a PUT request at /user');
+app.put("/user", (req, res) => {
+    return res.send("Got a PUT request at /user");
 });
