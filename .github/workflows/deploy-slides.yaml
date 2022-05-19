@@ -14,7 +14,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       
-    - name: Add Stylesheets
+    - name: '[Inject] Add Stylesheets'
       uses: jacobtomlinson/gha-find-replace@v2
       with:
         find: |
@@ -42,7 +42,7 @@ jobs:
           </script>
           <!-- / Qwiri Fork End -->
     
-    - name: Add Change Theme Button
+    - name: '[Inject] Add Change Theme Button'
       uses: jacobtomlinson/gha-find-replace@v2
       with:
         find: |
@@ -71,8 +71,16 @@ jobs:
           <!-- / Qwiri Fork End -->
           
           <div class="reveal">
-
-    - name: Deploy
+    
+    - name: '[Inject] Update Repo Links'
+      uses: jacobtomlinson/gha-find-replace@v2
+      with:
+        find: |
+          https://gitlab.com/chr1shaefn3r-dhbw/vorlesung-webeng1/-/
+        replace: |
+          https://github.com/Qwiri/WebEng1-Community-Fork/
+# 
+    - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
