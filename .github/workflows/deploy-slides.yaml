@@ -75,10 +75,8 @@ jobs:
     - name: '[Inject] Update Repo Links'
       uses: jacobtomlinson/gha-find-replace@v2
       with:
-        find: |
-          https://gitlab.com/chr1shaefn3r-dhbw/vorlesung-webeng1/-/
-        replace: |
-          https://github.com/Qwiri/WebEng1-Community-Fork/
+        find: 'https://gitlab.com/chr1shaefn3r-dhbw/vorlesung-webeng1/-/'
+        replace: 'https://github.com/Qwiri/WebEng1-Community-Fork/'
 # 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
