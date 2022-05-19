@@ -21,12 +21,12 @@ jobs:
           <link rel="stylesheet" href="dist/theme/white.css">
         replace: |
           <!-- Qwiri Fork Start -->
-          <link rel="stylesheet alternate" id="night" href="dist/theme/night.css">
-          <link rel="stylesheet" id="white" href="dist/theme/white.css">
+          <link rel="stylesheet" id="night" href="dist/theme/night.css">
+          <link rel="stylesheet alternate" id="white" href="dist/theme/white.css">
           <link rel="stylesheet alternate" id="moon" href="dist/theme/moon.css">
 
           <script defer>
-              let themes = [ 'white', 'night', 'moon' ];
+              let themes = [ 'night', 'white', 'moon' ];
               let current = 0;
 
               function toggleTheme() {
