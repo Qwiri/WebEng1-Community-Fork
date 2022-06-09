@@ -1077,7 +1077,7 @@ Cookie: theme=light; sessionToken=abc123
 				<section>
 					<h3>Cookies: Anatomy</h3>
 					<p>Einfaches Key=Value Paar, z.B.:<br />sessionToken=abc123</p>
-					<p class="fragment">Value darf alle druckbare ASCII-Zeichen:<br />"!" bis "~" ohne: "," und ";"</p>
+					<p class="fragment">Value darf alle druckbare ASCII-Zeichen:<br />"!" bis "~" ohne: "," und ";" beinhalten</p>
 					<p class="fragment">Zusätzliche Attribute:<br />Domain+Path, Expires/Max-Age, Secure und
 						HttpOnly<br />werden mit ";"
 						hinter den Value gehängt</p>
@@ -1206,17 +1206,16 @@ document.cookie // theme=light; user=Me
 		<code class="hljs" data-line-numbers="|1-2|4-12|4-6|7-9|10-12|14|">// Neues WebSocket Objekt anlegen
 const socket = new WebSocket('ws://localhost:8000/');
 
-socket.onopen = function () {
+socket.onopen = () => {
 	// Verbindungsaufbau behandeln
+	socket.send("Hello Server");
 };
-socket.onmessage = function(event) {
+socket.onmessage = (event) => {
 	console.log(event.data); // Neue Nachricht behandeln
 };
-socket.onclose = function(event) {
+socket.onclose = () => {
 	// Verbindungsabbau behandeln
-};
-
-socket.send("Hello Server");</code></pre>
+};</code></pre>
 				</section>
 				<section>
 					<h3>WebSockets: Serverside (NodeJS)</h3>
