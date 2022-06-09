@@ -1048,10 +1048,10 @@ app.listen(port);</code></pre>
 				<section>
 					<h3>Cookies: Ablauf</h3>
 					<ol>
-						<li>Browser frägt Website an</li>
+						<li>Browser fragt Website an</li>
 						<li class="fragment" data-fragment-index="1">Server Antwort mit HTML-Dokument <em>und</em> ein
 							Cookie</li>
-						<li class="fragment" data-fragment-index="2">Browser frägt nächste Website auf der gleichen
+						<li class="fragment" data-fragment-index="2">Browser fragt nächste Website auf der gleichen
 							Domain and <em>und</em> schickt das Cookie
 							mit</li>
 					</ol>
@@ -1213,7 +1213,7 @@ socket.onmessage = function(event) {
 	console.log(event.data); // Neue Nachricht behandeln
 };
 socket.onclose = function(event) {
-// Verbindungsabbau behandeln
+	// Verbindungsabbau behandeln
 };
 
 socket.send("Hello Server");</code></pre>
@@ -1256,7 +1256,7 @@ socket.send("Hello Server");</code></pre>
 						<li class="fragment">Persistent
 							<ul>
 								<li>Leben so lange der Speicher lebt (Platte, DB)</li>
-								<li>Speicherort must erstmal nicht auf dem gleichen Server sein</li>
+								<li>Speicherort muss erstmal nicht auf dem gleichen Server sein</li>
 							</ul>
 						</li>
 					</ol>
@@ -1293,8 +1293,8 @@ socket.send("Hello Server");</code></pre>
 				</section>
 				<section>
 					<h3>Node.js - Dateisystem</h3>
-					<p>Node.js-Prozess hat Zugriff auf das Dateisystem als der User der ihn startet</p>
-					<p class="fragment">Sicherheitsvorkehrung: Server niemals(!!) als Root/Administrator starten</p>
+					<p>Node.js-Prozess hat Zugriff auf das Dateisystem als der User, der ihn startet</p>
+					<p class="fragment">Sicherheitsvorkehrung: Server niemals (!!) als Root/Administrator starten</p>
 					<p class="fragment">Dateisystem-API: <a href="https://nodejs.org/dist/latest-v16.x/docs/api/fs.html">fs</a></p>
 					<p class="fragment">Mehrere Geschmacksrichtungen:<br /><a
 							href="https://nodejs.org/dist/latest-v16.x/docs/api/fs.html#callback-api">Callback-API</a>,
@@ -1355,9 +1355,9 @@ socket.send("Hello Server");</code></pre>
 			</section>
 			<section>
 				<h3>Praxis - NodeJS - Aufgabe 11</h3>
-				<p>Erweitert das Taschenrechner-Projekt, um eine JSON-basierte Konfiguration:
+				<p>Erweitert das Taschenrechner-Projekt um eine JSON-basierte Konfiguration:
 				<ul>
-					<li>Port: Auf welchem Port der Server horcht</li>
+					<li>Port: Auf welchem Port der Server horcht 😳👂</li>
 					<li>Historienlänge: Wie viele Einträge die Historie speichert</li>
 				</ul>
 				</p>
